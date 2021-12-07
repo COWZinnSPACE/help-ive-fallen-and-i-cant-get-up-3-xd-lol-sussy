@@ -1,11 +1,17 @@
-let x = 0
-input.onButtonPressed(Button.B, function () {
-    x = 2 + 3
-    if (x == 5) {
-        radio.sendString("HELP >:(")
-    }
-    music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
-})
+radio.setGroup(50)
 basic.forever(function () {
-    radio.setGroup(50)
+    if (input.isGesture(Gesture.Shake)) {
+        radio.sendString("HELP >:(")
+        basic.showLeds(`
+            # # # # #
+            # # # # #
+            # # # # #
+            # # # # #
+            # # # # #
+            `)
+        music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
+    } else {
+        radio.sendString("safe")
+        music.stopAllSounds()
+    }
 })
