@@ -1,3 +1,9 @@
+radio.onReceivedString(function (receivedString) {
+    if (receivedString == "stop") {
+        basic.clearScreen()
+        music.stopAllSounds()
+    }
+})
 radio.setGroup(50)
 basic.forever(function () {
     if (input.isGesture(Gesture.Shake)) {
